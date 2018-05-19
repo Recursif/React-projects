@@ -1,0 +1,33 @@
+
+Overview:
+
+Components and options for laying out your
+Bootstrap project, including wrapping containers,
+a powerful grid system, a flexible media object,
+and responsive utility classes.
+
+Containers are required when using our default grid system.
+
+
+fluid or max-width
+
+Grid system:
+
+Use our powerful mobile-first flexbox grid to
+build layouts of all shapes and sizes thanks to
+a twelve column system, five default responsive tiers,
+Sass variables and mixins, and dozens of predefined classes.
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>

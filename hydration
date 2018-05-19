@@ -1,0 +1,22 @@
+
+
+React expects that the rendered content is
+identical between the server and the client.
+It can patch up differences in text content,
+but you should treat mismatches as bugs and fix them.
+
+In dev mode, react warns about mismatches during hydratation.
+There are no guarantees that attribute differences will be
+patched up in case of mismatches.
+
+This is important for performance reasons because in most apps,
+mismatches are rare, and so validating all markup would be
+prohibilively expensive.
+
+
+You render more app that your app rendered
+
+
+server-side rendering is only at the initial page's load
+
+solution componentDidMount
