@@ -1,15 +1,17 @@
 
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-import 'style.css'
+import './style.css'
 
 
 class Square extends Component {
   render() {
-    <button className="square">
-      {/**/}
-    </button>
+    return (
+      <button className="square">
+        {/**/}
+      </button>
+    )
   }
 }
 
@@ -24,7 +26,7 @@ class Board extends Component {
 
     return (
       <div>
-        <div className"status">{status}</div>
+        <div className="status">{status}</div>
         <div classNamr="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -48,15 +50,18 @@ class Board extends Component {
 
 class Game extends Component {
   render() {
-    <div className="game">
-      <div className="game-board">
-        <Board />
-      <div/>
-      <div className="game-info">
-        <div>{/* status */}</div>
-        <ol>{/* TODO */}</ol>
+
+    return (
+      <div className="game">
+        <div className="game-board">
+          <Board />
+        </div>
+        <div className="game-info">
+          <div>{/* status */}</div>
+          <ol>{/* TODO */}</ol>
+        </div>
       </div>
-    </div>
+    )
   }
 }
 
