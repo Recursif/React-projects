@@ -2,68 +2,63 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-class TodoApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { items: [], text: '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+import 'style.css'
+
+
+class Square extends Component {
+  render() {
+    <button className="square">
+      {/**/}
+    </button>
   }
+}
 
-  handleChange(e) {
-    this.setState({ text: e.target.value })
-  }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    if (!this.state.text.length) {
-      return;
-    }
-    const newItem = {
-     text: this.state.text,
-     id: Date.now()
-    };
-
-    this.setState(prevState => ({
-      items: prevState.items.concat(newItem),
-      text: ''
-    }));
+class Board extends Component {
+  renderSquare(i) {
+    return <Square />
   }
 
   render() {
+    const status = 'Next player: X'
+
     return (
       <div>
-        <h3>TODO</h3>
-        <TodoList items={this.state.items} />
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="new-todo">
-            what needs to be done?
-          </label>
-          <input
-            id="new-todo"
-            onChange={this.handleChange}
-            value={this.state.text}
-          />
-          <button>
-            Add #{this.state.items.length + 1}
-          </button>
-        </form>
+        <div className"status">{status}</div>
+        <div classNamr="board-row">
+          {this.renderSquare(0)}
+          {this.renderSquare(1)}
+          {this.renderSquare(2)}
+        </div>
+        <div classNamr="board-row">
+          {this.renderSquare(3)}
+          {this.renderSquare(4)}
+          {this.renderSquare(5)}
+        </div>
+        <div classNamr="board-row">
+          {this.renderSquare(6)}
+          {this.renderSquare(7)}
+          {this.renderSquare(8)}
+        </div>
       </div>
     )
   }
 }
 
 
-class TodoList extends React.Component {
+class Game extends Component {
   render() {
-    return (
-      <ul>
-        {this.props.items.map(item => (
-          <li key={item.id}>{item.text}</li>
-        ))}
-      </ul>
-    )
+    <div className="game">
+      <div className="game-board">
+        <Board />
+      <div/>
+      <div className="game-info">
+        <div>{/* status */}</div>
+        <ol>{/* TODO */}</ol>
+      </div>
+    </div>
   }
 }
 
-ReactDOM.render(<TodoApp />, document.getElementById("app"))
+
+ReactDOM.render(<Game />, document.getElementById("app"))
