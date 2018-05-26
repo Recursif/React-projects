@@ -61,4 +61,32 @@ some placeholders that we'll fill in later.
 
 ## Passing Data Through Props
 
- 
+Let's try to pass some data from the Board component to the Square:
+
+class Board extends Component {
+  renderSquare(i) {
+    return <Square value={i} />
+  }
+}
+
+Then change Square's render method to show that value by
+replacing {/* */} with {this.props.value}:
+
+class Square extends Component {
+  render() {
+    return (
+      <button className="square">
+       {this.props.value}
+      </button>
+    )
+  }
+}
+
+
+
+## An Interactive Component
+
+Let's make the Square component fill in an "X"
+when you click it. Try changing the button
+tag returned in the render() function of the
+Square like this:
