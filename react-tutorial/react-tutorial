@@ -90,3 +90,19 @@ Let's make the Square component fill in an "X"
 when you click it. Try changing the button
 tag returned in the render() function of the
 Square like this:
+
+class Square extends Component {
+  render() {
+    return (
+      <button className="square" onClick={() => alert('click')}>
+        {this.props.value}
+      </button>
+    )
+  }
+}
+
+Doing {alert('click')} would alert immediately instead of when
+the button is clicked.
+
+React components can have state by setting this.state in the
+constructor, which should be considered private to the component.
