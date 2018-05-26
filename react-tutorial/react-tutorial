@@ -151,9 +151,103 @@ class Square extends Component {
 
   render() {
     return (
-      <button className="square" onClick{() => this.setState({value: 'X'})}>
+      <button className="square" onClick={() => this.setState({value: 'X'})}>
         {this.state.value}
       </button>
     )
   }
+}
+
+
+Whenever this.setState is called, an update to the component is
+scheduled, causing React to merge in the passed state updated and
+rerender the component along with its descendants.
+
+When the component rerenders, this.state.value will be 'X'
+so you'll see an X in the grid.
+
+If you click on any square, an X should show up in it.
+
+
+
+## Lifting State Up
+
+We now have the basic building blocks for a tic-tac-toe game.
+But right now, the state is encapsulated in each Square component.
+
+To make a fully-working game, we now need to check if
+one player has wont the game, and alternate placing X and O
+in the squares. To check if someone has won, we'll need to have
+the value of all 9 squares in one place, rather than split up
+accross the Square components.
+
+
+The best solution here is to store this state in the Board
+component instead of in each Square - and the Board component can tell
+each Square what to display, like how we made each display its index earlier.
+
+When you want to aggregate data from multiple children or to have
+two child components communicate with each other,
+move the state upwards so that it lives in the parent component.
+
+The parent can then pass the state back down to the children via props,
+so that the children components are always in sync with each other and with
+the parent.
+
+class Board extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      squares: Array(9).fill(null),
+    }
+  }
+  renderSquare(i) {
+  return <Square value={i} />;
+}
+
+render() {
+  const status = 'Next player: X';
+
+  return (
+      <div>
+        <div className="status">{status}</div>
+        <div className="board-row">
+          {this.renderSquare(0)}
+          {this.renderSquare(1)}
+          {this.renderSquare(2)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(3)}
+          {this.renderSquare(4)}
+          {this.renderSquare(5)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(6)}
+          {this.renderSquare(7)}
+          {this.renderSquare(8)}
+        </div>
+      </div>
+    );
+  }
+}
+
+We'll fill it in later so that a board looks something like
+
+[
+  'O', null, 'X',
+  'X', 'X', 'O',
+  'O', null, null,
+]
+
+Board's renderSquare method currently looks like this:
+
+renderSquare(i) {
+  return <Square value={i} />
+}
+
+
+Modify it to pass a value prop to Square.
+
+renderSquare(i) {
+  return <Square value={this.state.squares[i]} />;
 }
