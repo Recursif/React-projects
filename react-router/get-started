@@ -1,0 +1,86 @@
+et
+# Intro
+
+Mental model to have when using React Router:
+
+We call it "Dynamoic Routing"
+
+## Static Routing
+
+
+If you’ve used Rails, Express, Ember, Angular etc.
+you’ve used static routing.
+In these frameworks,
+you declare your routes as part of your app’s initialization
+before any rendering takes place.
+
+
+app.get('/', handleIndex)
+app.get('/invoices', handleInvoices)
+app.get('/invoices/:id', handleInvoice)
+app.get('/invoices/:id/edit', handleInvoiceEdit)
+
+app.listen()
+
+
+## Dynamic routing
+
+This mean routing that takes place as your app
+is rendering, not in a configuration or convention outside
+of a running app.
+
+That means almost everything is a component in React Router.
+
+Review of the API:
+
+First grad a router and render it at the top of your app:
+
+// react-native
+import { NativeRouter } from 'react-router-native'
+
+// react-dom (what we'll use here)
+import { BrowserRouter } from 'react-router-dom'
+
+ReactDOM.render((
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>
+), el)
+
+
+Next, grab the link component to link to a new location:
+
+Next, grab the link component to link to a new location:
+
+const App = () => (
+  <div>
+    <nav>
+      <Link to="/dashboard">Dashboard</Link>
+    </nav>
+  </div>
+)
+
+Finally, render a Route to show some UI when the user visits /Dashboard
+
+const App = () => (
+  <div>
+    <nav>
+      <Link to="/dashboard">Dashboard</Link>
+    </nav>
+    <div>
+      <Route path="/dashboard" component={Dashboard}/>
+    </div>
+  </div>
+)
+
+The router will render <Dashboard {...props}>
+where props are some router specific
+things that look like { match, location, history }.
+If the user is not a at /dashboard then the Router will
+render null. That's pretty much all there is to it.
+
+
+## Nested routes
+
+Lots of routers have some concept of "nested routes".
+If you've used versions of React Router previous to

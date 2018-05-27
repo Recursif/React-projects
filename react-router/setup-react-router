@@ -1,0 +1,27 @@
+
+# Setting up modular routing with Express Router
+
+Let's leave our happy React land and venture into a happy, but still
+unexplored server side. Time for setting up server side routing.
+
+All our routes are going to be located in routes folder.
+
+Inside that folder there will be a separation by the kind of routes.
+
+After creating a routes folder we are going to create api folder for api routes.
+
+Then inisides the api folder let's create index.js file with the following content:
+
+const express = require('express');
+
+const apiRouter = express.Router();
+
+copnst getLocations = (req,res) => {
+  res.sendFile(process.cwd() + '/data/locations.json');
+}
+
+apiRouter.get('/locations', getLocations);
+
+module.exports = apiRouter;
+
+We are setting up an Express router with express.Router method.
