@@ -43,7 +43,7 @@ class ModalSwitch extends Component{
           <Route path="/gallery" component={Gallery} />
           <Route path="/img/:id" component={ImageView} />
         </Switch>
-        {isModal ? <Route path="/img/:id" component={Modal} />} : null}
+        {isModal ? <Route path="/img/:id" component={Modal} /> : null}
       </div>
     )
   }
@@ -92,7 +92,7 @@ const Home = () => (
   </div>
 )
 
-const Gallery = () => {
+const Gallery = () => (
   <div>
    {IMAGES.map(i => (
       <Link
@@ -108,7 +108,7 @@ const Gallery = () => {
       </Link>
     ))}
   </div>
-}
+)
 
 const ImageView = ({ match }) => {
   const image = IMAGES[parseInt(match.params.id, 10)]
@@ -175,4 +175,4 @@ const ModalGallery = () => (
 )
 
 
-ReactDOM.render(<MadalGallery />, document.getElementById("app"))
+ReactDOM.render(<ModalGallery />, document.getElementById("app"))
