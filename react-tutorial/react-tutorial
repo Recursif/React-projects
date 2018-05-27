@@ -312,3 +312,77 @@ mutating the existing array.
 Now you should be able to click in squares to fill them again,
 but the state is stored in the Board component instead of in each Square,
 which lets us continue building the game.
+
+
+## Why immutability is important
+
+In the previous code example, we suggest using the .slice() operator
+
+to copy the squares array prior to making changes and to prevent
+mutating the existing array. Let's talk about what this means and why it is
+an important concept to learn.
+
+There are generally two ways for changing data. The first method is to
+mutate the data by directly changing the values of a variable.
+
+The second method is to replace the data with a new copy of the object
+that also includes desired changes.
+
+### Data change with mutation
+
+var player = {score: 1, name: 'Jeff'}
+player.score = 2
+// Now player is {score: 2, name: 'Jeff'}
+
+
+### Data change without mutation
+
+var player = {score: 1, name: 'Jeff'}
+
+var newPlayer = Object.assign({}, player,  {score: 2})
+// Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
+
+// Or if you are using object spread syntax proposal, you can
+write :
+// var newPlayer = {...player, score: 2}
+
+
+The end result is the same but by not mutating
+directly we now have an added benefit that can help us
+increase component and overall application performance.
+
+
+Easier Undo/Redo and Time Travel
+
+Immutability also makes some complex features much
+easier to implement.
+
+Ex: time travel
+
+Avoiding data mutations lets us keep a reference to older versions
+of the data, and switch between them if we need to.
+
+Tracking Changes
+
+Determinig if a mutated object has changed is complex because changes
+are made directly to the object. This then requires comparing the current
+object to a previous copy, traversing the entire object tree, and comparing each variable
+and value.
+This process = Complex
+
+
+Determining how an immutable object has changed is considerably easier.
+If the object being referenced is different from before, then the object
+has changed. That's it!
+
+
+Determining When to Re-Render in React
+
+The biggest benefit of immutability in React comes when you build
+simple pure components. Since immutable data can more easily determine
+if changes have been made, it also helps to determine when a component
+requires being re-rendered.
+
+
+
+## Functional Components
