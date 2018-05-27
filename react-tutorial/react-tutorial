@@ -558,3 +558,76 @@ You can cut it from the Board class, and paste it into the Game class.
 We also need to change it a little, since Game state is structured differently.
 
 ## Showing the Moves
+
+For each step in the history, we create a list item <li> with a button
+<button> inside it that has a click handler which we'll implement shortly.
+
+ With this code, you should see a list of the moves that have been made in the game,
+ along with a warning that says:
+
+Warning: Each child in an array or iterator should have a unique “key” prop.
+Check the render method of “Game”.
+
+
+## Keys
+
+When you render a lsit of items, React always stores some info about each item in the list.
+If you render a component that has stable, that state needs to be stored - and regardless of how you
+implement your components, React stores a reference to the backing native views.
+
+When you update that list, React needs to determine what has changed.
+
+You could've added, removed, rearranged, or updated items in the list.
+
+Imagine transitioning from
+
+<li>Alexa: 7 tasks left</li>
+<li>Ben: 5 tasks left</li>
+
+to
+
+<li>Ben: 9 tasks left</li>
+<li>Claudia: 8 tasks left</li>
+<li>Alexa: 5 tasks left</li>
+
+As a result, React asks you to specify a key property on each element in a list,
+a string to differentiate each component from its siblings.
+
+In this case alexa, ben, claudia might be sensible keys;
+if the items correspond to objects in a database
+the database ID is usually a good choice:
+
+<li key={user.id}>{user.name}: {user.taskCount} tasks left</li>
+
+a key is  special property that's reserved by React (along with ref,
+a more advanced feature).
+
+When an element is created, React pulls off the key property and stores
+the key directly on the returned element.
+
+Even though it may look like it is part of props,
+it cannot be referenced with this.props.key.
+
+React uses the key automatically while deciding which children to update;
+there is no way for a component to inquire about its own key.
+
+When a list is rerendered, React takes each element in the new version
+and looks for one with a matching key in the previous list.
+
+When a key is added to the set, a component is created;
+when a key is removed, a component is destroyed.
+
+Keys tell React about the identity of each component,
+so that it can maintain the state across rerenders.
+
+If you change the key of a component,
+it will be completely destroyed and recreated with a new state.
+
+It’s strongly recommended that you assign proper keys
+whenever you build dynamic lists.
+
+If you don’t specify any key,
+React will warn you and fall back to using the array index as a key
+
+Component keys don’t need to be globally unique,
+only unique relative to the immediate siblings
