@@ -45,13 +45,13 @@ const Topics = ({ match }) => (
     <h2>Topics</h2>
     <ul>
       <li>
-        <Link to="{`${match.url}/rendering`}">Rendering with React</Link>
+        <Link to={`${match.url}/rendering`}>Rendering with React</Link>
       </li>
       <li>
-        <Link to="{`${match.url}/components`}">Components</Link>
+        <Link to={`${match.url}/components`}>Components</Link>
       </li>
       <li>
-        <Link to="{`${match.url}/props-vs-state`}">Props vs State</Link>
+        <Link to={`${match.url}/props-vs-state`}>Props vs State</Link>
       </li>
     </ul>
 
