@@ -1,7 +1,7 @@
 {
-  "name": "gallery",
+  "name": "basic",
   "version": "1.0.0",
-  "description": "gallery",
+  "description": "baisc",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development ./src/js/index.js --output ./dist/main.js --open",
