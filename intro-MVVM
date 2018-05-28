@@ -1,0 +1,87 @@
+
+# Intro to Modèle View ViewModel
+
+
+Redux's global store feels more like a
+monolithic meatbell that control the entire app.
+
+We believe independetly testable ViewModels
+makes for more maintanable code.
+
+Using react-view-model lets you create observable ViewModels for React components.
+
+
+## How to use react-view-model
+
+
+Let's look at an example of a functional React component that has a
+ViewModel.
+
+First, we'll import can-define to create an observable ViewModel:
+
+import DefineMap from 'can-define/map/map';
+
+export const ViewModel = DefineMap.extend({
+  count: 'number',
+  increment: function() {
+  return this.count++;
+  }
+})
+
+Each instance of our ViewModel type will have a count property and an increment
+method. Notice how this ViewModel type is separate from our component code;
+we'll discuss testing this code on its own in a little bit.
+
+Next, we’ll import react, react-dom, and react-view-model,
+then pass react-view-model the ViewModel type and a render function that uses the
+viewModel instance passed to it:
+
+import ReactDOM from 'react-dom'
+import reactViewModel from 'react-view-model'
+import { ViewModel } from './view-model.js'
+
+const AppComponent = reactViewModel(ViewModel, (viewModel) => {
+  return (
+    <div onClick={ () => viewModel.increment() }>
+      Count: {viewModel.count} (Click me)
+    </div>
+  )
+})
+
+Lastly, we'll add our component to the DOM, which will create an instance of the view model
+and call the render function:
+
+ReactDOM.render(
+  <AppComponent count={0} />,
+  document.body
+)
+
+One of the beautiful things about this pattern is
+how ourViewModel is separetedd from the component code.
+
+This lets React focus on what it's good at - the View - and give us the opportunity to
+create nice, testable instances of the ViewModel.
+
+## Testing ViewModels
+
+With our ViewModel code separate from our component code,
+we can test is independently and reuse it accross components.
+
+import DefineMap from 'can-define/map/map'
+import QUnit from 'qunitjs'
+import { ViewModel } from './view-model.js'
+
+QUnit.test('ViewModel increment', function( assert ) {
+  const viewModel = new ViewModel({count: 1})
+  assert.equal(viewModel.count, 1, 'Starting count is correct')
+  viewModel.increment()
+  assert.equal(viewModel.count, 2, 'Increment works')
+})
+
+
+/*
+Sources:
+https://www.bitovi.com/blog/introducing-react-view-model-mvvm-with-react
+
+https://canjs.com/doc/react-view-model.html
+*/
