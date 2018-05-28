@@ -1,7 +1,7 @@
 {
-  "name": "gallery",
+  "name": "url-parameter",
   "version": "1.0.0",
-  "description": "gallery",
+  "description": "url-parameter",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development ./src/js/index.js --output ./dist/main.js --open",
