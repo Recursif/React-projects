@@ -1,0 +1,48 @@
+
+# react-stripe-elements
+
+This project is a thin React wrapper around Stripe.js
+and Stripe Elements.
+
+It allows you to add Elements to any React app,
+and manages the state and lifecylce of Elements for you.
+
+The stripe.js / Stripe Elements API reference foes into more
+detail on the various customization options for Elements:
+
+https://stripe.com/docs/stripe-js/reference
+
+
+## Demo
+
+The fastest way to start playing around with react-stripe-elements is
+with this JSFiddle: https://jsfiddle.net/g9rm5qkt/.
+
+Or you can run the demo :
+
+git clone https://github.com/stripe/react-stripe-elements
+cd react-stripe-elements
+
+# (make sure you have yarn installed: https://yarnpkg.com/)
+
+yarn install
+yarn run demo
+
+
+## Installation
+
+npm install --save react-stripe-elements
+
+or using UMD :
+
+<script src="https://unpkg.com/react-stripe-elements@latest/dist/react-stripe-elements.min.js"></script>
+
+then load Stripe.js in your app
+
+
+## Get started
+
+The Stripe context (StripeProvider)
+
+In order for your application to have access to the Stripe object,
+let's add StripeProvider to our root React App component:
