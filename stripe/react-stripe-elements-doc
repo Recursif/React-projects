@@ -46,3 +46,128 @@ The Stripe context (StripeProvider)
 
 In order for your application to have access to the Stripe object,
 let's add StripeProvider to our root React App component:
+
+// index.js
+import React from 'react';
+import {render} from 'react-dom';
+import {StripeProvider} from 'react-stripe-elements';
+
+import MyStoreCheckout from './MyStoreCheckout';
+
+const App = () => {
+  return (
+    <StripeProvider apiKey="pk_test_12345">
+      <MyStoreCheckout />
+    </StripeProvider>
+  );
+};
+
+render(<App />, document.getElementById('root'));
+
+
+
+Elements groups (Elements)
+
+Next, when you're building components for your checkout form,
+you'll want to wrap the Elements component around your form.
+
+This groups the set of Stripe Elements you're using together,
+so that we're able to pull data from groups of Elements when you're tokenizing.
+
+// MyStoreCheckout.js
+import React, { Component } from 'react'
+import { Element } from 'react-stripe-elements'
+
+import InjectedCheckoutForm from './CheckoutForm'
+
+
+class MyStoreCheckout extends React {
+  render() {
+    return (
+      <Elements>
+        <InjectedCheckoutForm/>
+      </Elements>
+    )
+  }
+}
+
+export default MyStoreCheckout
+
+
+Setting your payment form (injectStripe)
+
+Use the injectStripe Higher-Order Component(HOC)
+to build your payment form components in the Elements tree.
+
+The Higher-Order Component pattern in React can be unfamiliar to those who've never seen it before.
+
+The injectStripe HOC provides the this.props.stripe property that manages your Elements groups.
+
+You can call this.props.stripe.createToken within a component that manages your
+Elements groups. You can call this.props.stripe.createToken within a component that has been injected to submit
+payment data to stripe.
+
+// CheckoutForm.js
+import React, { Component } from 'react'
+import { injectStripe } from 'react-stripe-elements'
+
+import AddressSection from './AddressSection'
+import CardSection from './CardSection'
+
+class CheckoutForm extends Component {
+  handleSubmit = (ev) => {
+    // We don't want to let default form submission happen here,
+    which would refresh the page.
+    ev.preventDefault();
+
+    // Within the context of Elements, this call to createToken knows which
+    Element to tokenize, since there's only one in this group.
+    this.props.stripe.createToken({name: 'Jenny Rosen'}).then(({token}) => {
+      console.log('Received Stripe token;', token);
+    });
+
+    // However, this line of code will do he same thing:
+    // this.props.stripe.createToken({type: 'card', name: 'Jenny Rosen'});
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <AddresseSection />
+        <CardSection />
+        <button>Confirm order</button>
+      </form>
+    )
+  }
+}
+
+export default injectStripe(CheckoutForm);
+
+
+### Using individual *Element components
+
+Now, you can use individual *Element components, such as CardElement, to build your form.
+
+// CardSection.js
+import React, { Component } from 'react'
+import { CardElement } from 'react-stripe-elements'
+
+class CardSection extends Component {
+  render() {
+    return (
+      <label>
+        Card details
+        <CardElement style={{base: {fontSize: '18px'}}} />
+      </label>
+    )
+  }
+}
+
+export default CardSection;
+
+
+## Using the paymentRequestButtonElement
+
+The paymentRequestButtonElement
+
+The payment Request Button lets you collect payment
