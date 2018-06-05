@@ -1,0 +1,51 @@
+
+# Creating Charges
+
+Use Stripe's API and
+your server-side code process charges.
+
+Once you've securely collected and tokenized your
+customer's credit card using Checkout, you can charge the card
+immediately or save it for later.
+
+Unlike tokenization, which occurs in the browser, charge attempts
+are made from your server, normally using one of our client librairies.
+
+If you haven't already, install the library for our favorite language now.
+
+On your server, grab the Stripe token in the POST parameters
+submitted by your form.
+
+From there, it's one simple API call to charge the card:
+
+
+// See your secret key: remember to change this to your live secret key in prod
+// See your keys here: https://dashboard.stripe.com/account/apikeys
+var stripe = require("stripe")("sk_test_xTRwMutg2xbAqkmaucLHOClH");
+
+// Token is created using Checkout or Elements!
+// Get the payment token ID submitted by the form:
+const token = request.body.stripeToken; // Using Express
+
+const charge = stripe.charges.create({
+  amount: 999,
+  currency: 'usd',
+  description: 'Example charge',
+  source: token,
+});
+
+
+
+As a convenience, if you're logged in while reading this page,
+we've pre-filled the example with your test secret API key.
+Only you can see this value. This will authenticate you to Stripe,
+so keep it secret and keep it safe. Remember to replace the test key
+with your live key in production. You can get all your keys from
+the Dashboard.
+
+
+As a convenience, if you’re logged in while reading this page, we’ve pre-filled the example with your test secret API key. Only you can see this value. This will authenticate you to Stripe, so keep it secret and keep it safe. Remember to replace the test key with your live key in production. You can get all your keys from the Dashboard.
+
+That’s it! If the charge creation request succeeds, the card has been successfully charged.
+
+You will automatically receive your money in seven days. If the charge attempt fails, we’ll return an error instead.
