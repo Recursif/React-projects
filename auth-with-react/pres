@@ -1,0 +1,114 @@
+
+
+# Intro 
+
+ReactJS is a declrative, efficient and flexible Javascript 
+library for building user interfaces.
+
+ReactJS makes it easy for you to build your web 
+applications in the form of encapsulated components that 
+manage their own state.
+
+## Understanding key concepts in ReactJS 
+
+ReactJS was influenced by XHP, an augmentation 
+of PHP and Hack to allow XML syntax for the 
+purpose of creating custom and reusable HTML elements.
+
+There are many questions you might have to ask yourself,
+such as:
+
+Why are JavaScript and HTML together in one script?
+What is JSX? Why is the syntax so weird?
+What is a state?
+Why do we need props?
+What are and why do we need components in our apps?
+
+These key concepts are:
+
+Components - The Types and API
+Props
+State
+JSX
+
+
+## Components - The types and API 
+
+React is basically about components. 
+A ReactJS app is just one big component made up of interoperable smaller components.
+
+Working with ReactJS means you are thinking in components most of the time.
+
+class CustomComponent extends React.Component {
+   render() {
+      return '<h3> This is my custom component!!!</h3>';
+   }
+}
+
+
+React provides some methods that are triggered at various points from creating a component up 
+until the component is destroyed.
+
+This is called the Components's Lifecycle.
+
+You can declare methods to hook into the components's lifecylce to control behavior 
+of the components in your app.
+
+Some examples of these lifecycle hooks are componentDidMount(), componentWillMount(), componentWillUnmount(), shouldComponentUpdate(), componentWillUpdate() and more.
+
+componentWillMount(): This method is called before the component is initially rendered.
+
+So it is called before the render method is executed.
+
+You can't perform any type of DOM manipulation here because the component isn't available 
+in the DOM yet.
+
+
+componentDidMount(): This method is called right after the component has been rendered.
+
+So it is called immediately after the render method has been executed. It's the best place 
+to perform network and AJAX calls.
+
+
+componentWillUnmount(): This method is called right before the components is removed from 
+the DOM.
+
+shouldComponentUpdate(): This method determines if a re-rendering should occur or not.
+It is never called on initial rendering and it's always called before the render method.
+
+componentWillUpdate(): This method is called as soon as shouldComponentUpdate returns true.
+It is just before the component is rendered with new data 
+
+There are also methods like render and setState that you can use to render an element on the DOM and set the state of a component respectively.
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+class Experiment extends Component {
+
+  componentWillMount() {
+    console.log("This will mount");
+  }
+
+  componentDidMount() {
+    console.log("This did mount");
+  }
+
+  componentWillUnmount() {
+    console.log("This will unmount");
+  }
+
+  render() {
+    console.log("I am just rendering like a boss");
+    return <div>I got rendered!</div>;
+  }
+
+}
+
+render(
+  <Experiment />,
+  document.getElementById("root")
+);
+
+
+
