@@ -237,3 +237,6 @@ class CelebrityJokes extends Component {
         )    
     }
 }
+
+export default CelebrityJokes
+

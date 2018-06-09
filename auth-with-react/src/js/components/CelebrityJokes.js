@@ -1,45 +1,49 @@
-
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import Nav from './Nav'
 import { getCelebrityData } from '../utils/chuck-api'
 
-
 class CelebrityJokes extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { jokes: [] }
+
+    constructor() {
+        super();
+        this.state = { jokes: [] };
     }
 
     getCelebrityJokes() {
-        getCelebrityData().then(jokes => {
-            this.setState(jokes)
+        getCelebrityData().then((jokes) => {
+            this.setState({ jokes })
         })
     }
 
     componentDidMount() {
-        getCelebrityJokes()
+        this.getCelebrityJokes()
     }
 
-    render () {
-          <div>
+    render() {
+
+        const { jokes } = this.state
+
+        return (
+            <div>
                 <Nav />
-                <h3 className="text-center">Chuck Norris Food Jokes</h3>
+
+                <h3 className="text-center">Privileged Chuck Norris Celebrity Jokes</h3>
                 <hr/>
 
-                {jokes.map((joke, index) => (
+                { jokes.map((joke, index) => (
                     <div className="col-sm-6" key={index}>
                         <div className="panel panel-danger">
-                            <div className="panel-heading">
-                                <h3 className="panel-title"><span className="btn">#{ joke.id }</span></h3>
-                            </div>
-                            <div className="panel-body">
-                                <p> { joke.joke } </p>
-                            </div>
+                        <div className="panel-heading">
+                            <h3 className="panel-title"><span className="btn">#{ joke.id }</span></h3>
+                        </div>
+                        <div className="panel-body">
+                            <p> { joke.joke } </p>
+                        </div>
                         </div>
                     </div>
                 ))}
-                
+
                 <div className="col-sm-12">
                     <div className="jumbotron text-center">
                         <h2>View Food Jokes</h2>
@@ -47,7 +51,7 @@ class CelebrityJokes extends Component {
                     </div>
                 </div>
             </div>
-        )    
+        )
     }
 }
 
