@@ -111,6 +111,7 @@ render(
 );
 
 
+
 ## Props
 
 Props is the short form for properties.
@@ -138,8 +139,9 @@ class SonComponent extends Component {
     }
 }
 
-## State 
 
+
+## State 
 
 When developping ReactJS applications, it is important to know when and when not to 
 use state in components.
@@ -201,6 +203,22 @@ class Button extends Component {
 }
 
 
+Now, this works great for simple applications like the one
+we'll build in this tutorial. 
+For medium and large apps, it is recommended to use a state management library 
+like redux.
 
 
+## JSX 
 
+Initially, looking at JSX seems awkward.
+JSX is the combination of HTML and JavaScript code in the same file
+
+You can decide to name the extension of the file .jsx or just .js. An example of JSX is:
+
+
+class Layout extends React.Component {
+  render() {
+    return <p>Hello {this.props.layoutStructure ?  'Frontend layout' : 'Backend Layout'}</p>;
+  }
+}
