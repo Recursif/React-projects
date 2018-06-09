@@ -1,6 +1,14 @@
 
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Experiment from './componentApiEx'
+import Button from './incrementButton'
 
-ReactDOM.render(<Experiment />, document.getElementById("app"))
+
+ReactDOM.render(
+    <div>
+        <Button />
+        <Experiment />
+    </div>,
+    document.getElementById("app"))

@@ -111,4 +111,96 @@ render(
 );
 
 
+## Props
+
+Props is the short form for properties.
+Properties are attributes of a component.
+
+In fact, props are how component talk to each other.
+
+A tag in HTML such as image has an attribute, prop called src that points to the 
+location of an image.
+
+In React, you can have two components, FatherComponent and SonComponent.
+
+Let's see how they can talk to each other.
+
+class FatherComponent extends Component {
+      render() {
+      return <SonComponent quality="eye balls" />;
+   }
+}
+
+
+class SonComponent extends Component {
+    render() {
+      return <p> I am a true son. I have my father's "{ this.props.quality }" . </p>;
+    }
+}
+
+## State 
+
+
+When developping ReactJS applications, it is important to know when and when not to 
+use state in components.
+
+The question now is: When do I use State?, When do I use props?
+
+Props are dara that the components depends on to render correctly.
+
+
+Most of the times, it comes from above, meaning it is passed down 
+from a parent component to a child component.
+
+Like props, state holds information about the component but it is 
+handle differently. For example, the number of times a button was clicked, user input 
+from a form, etc.
+
+When state changes in a component, the component automatically re-renders and updates the DOM.
+
+Inside a component, state is managed using a setState function.
+
+
+class Layout extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      position: "right"
+    };
+  }
+
+  render() {
+    return (
+      { this.state.position }
+    )
+  }
+}
+
+
+class Button extends Component {
+    constructor() {
+        super()
+        this.state = {
+            count: 0
+        }
+    }
+
+    updateCount() {
+        this.setState((prevState, props) => {
+            return { count: prevState.count +1 }
+        })
+    }
+
+    render() {
+        return (
+            <button onClick{() => this.updateCount()} >
+                Clicked {this.state.count} times
+            </button>
+        )
+    }
+}
+
+
+
+
 
