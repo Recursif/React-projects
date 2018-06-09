@@ -1,0 +1,68 @@
+
+
+# Our App: Chuck Norris World
+
+## Build the back-end 
+
+Let's build an API to serve the list of jokes to our app. 
+
+We'll quickly build the API with NodeJs. 
+The API is simple.
+
+This is what we need:
+
+- An endpoint to serve jokes about food /api/jokes/food 
+
+- An endpoint to server jokes about celebrities /api/jokes/celebrity 
+
+- Secure the endpoint that serves celebrity jokes,
+so that it can only be accessed by registed users.
+
+## Build the front with react 
+
+### Fetch the Api Data 
+
+The first thing we need to do is to fetch the API data from 
+our Node backend to display in your app.
+
+We are using a very good promise based http client, axios. An alternative for this is superagent.
+
+In the getFoodData and getCelebrityData functions,
+axios fetches data from the API endpoints. 
+
+Then we do this: export {getFoodData, getCelebrityData} 
+to make them ready for use in our components.
+
+
+### Build the Nav Component 
+
+The Nav.js file is our Nav component. Go ahead and add code to it like so:
+
+import React, { Component }  from 'react'
+import { Link } from 'react-router'
+import '../App.css'
+
+class Nav extends Component {
+    render() {
+        return (
+            <nav className="navbar navbar-default">
+                <div className="navbar-header">
+                    <Link className="navbar-brand" tp="/">Chuck Norris World</Link>
+                </div>
+                <ul className="nav navbar-nav">
+                    <li>
+                        <Link to="/">Food Jokes</Link>
+                    </li>
+                    <li>
+                        <Link to="/special">Celebrity Jokes</Link>
+                    </li>
+                </ul>
+                
+                <ul className="nav navbar-nav navbar-right">
+                    <li><button className="btn btn-info log">Log In</button></li>
+                    <li><button className="btn btn-danger log">Log out </button></li>
+                </ul>
+            </nav>
+        )
+    }
+}
