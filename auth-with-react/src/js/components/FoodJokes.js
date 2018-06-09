@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Nav from './Nav';
-import { getFoodData } from '../utils/chucknorris-api';
+import { getFoodData } from '../utils/chuck-api';
 
 class FoodJokes extends Component {
     constructor() {
