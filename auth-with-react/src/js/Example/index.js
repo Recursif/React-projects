@@ -11,4 +11,5 @@ ReactDOM.render(
         <Button />
         <Experiment />
     </div>,
-    document.getElementById("app"))
+    document.getElementById("app")
+)
