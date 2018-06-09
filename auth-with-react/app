@@ -240,3 +240,11 @@ class CelebrityJokes extends Component {
 
 export default CelebrityJokes
 
+
+
+## Build the Root Component 
+
+This is the component where we got to define how 
+routing should work in our application and also 
+bind it to the root div that holds the whole app.
+

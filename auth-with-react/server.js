@@ -83,7 +83,7 @@ app.get('/api/jokes/celebrity', (req, res) => {
           id: 88886,
           joke: "Hellen Keller's favorite color is Chuck Norris."
         }
-    ];
+    ]
     res.json(CelebrityJokes)
 })
 

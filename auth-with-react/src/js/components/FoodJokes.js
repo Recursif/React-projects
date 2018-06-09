@@ -1,8 +1,8 @@
 
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Nav from './Nav';
-import { getFoodData } from '../utils/chuck-api';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import Nav from './Nav'
+import { getFoodData } from '../utils/chuck-api'
 
 class FoodJokes extends Component {
     constructor() {
@@ -26,7 +26,7 @@ class FoodJokes extends Component {
         return (
             <div>
                 <Nav />
-                
+
                 <h3 className="text-center">Chuck Norris Food Jokes</h3>
                 <hr/>
 
@@ -51,7 +51,7 @@ class FoodJokes extends Component {
 
                 <div className="col-sm-12">
                     <div className="jumbotron text-center">
-                    <h2>View Celebrity Jokes</h2>
+                        <h2>View Celebrity Jokes</h2>
                         <Link className="btn btn-lg btn-success" to='/special'> Celebrity Jokes </Link>
                     </div>
                 </div>
