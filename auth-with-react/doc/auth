@@ -35,3 +35,24 @@ variables with the audience attribute of the API, and your auth0 domain respecti
 
 Then add the authCheck middleware to the celebrity endpoint like so:
 
+
+Note: You should load these values from env variables for security reasons.
+
+We are using Auth0's Centralized Login Page in the Login method 
+and passed in our credentials.
+
+The auth0 package calls the Auth0's authorize endpoint.
+
+With all the details we passed to the method, our client app will 
+be validated and authorized to perform authentification.
+
+The parameters that you do not have yet are the {AUTH0_CLIENT_ID}
+and the {YOUR_CALLBACK_URL}.
+
+When you created your API, Auth0 also created a test client 
+which you can use. Additionnally, you can use any existing SPA Auth0 client 
+found in Clients section oy your management dashboard.
+
+Check the Test panel of your API from the dashboard. 
+
+You'll see the test client like 
