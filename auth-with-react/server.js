@@ -16,12 +16,12 @@ const  authCheck = jwt({
         rateLimit: true,
         jwksRequestsPerMinute: 5,
         // YOUR-AUTH0-DOMAIN name e.g prosper.auth0.com
-        jwksUri: "https://{YOUR-AUTH0-DOMAIN}/.well-known/jwks.json"
+        jwksUri: "recursif.eu.auth0.com/.well-known/jwks.json"
     }),
 
     // This is the identifier we set when we created the API
-    audience: '{YOUR-API-AUDIENCE-ATTRIBUTE}',
-    issuer: '{YOUR-AUTH0-DOMAIN',
+    audience: 'https://recursif.eu.auth0.com/userinfo',
+    issuer: 'recursif.eu.auth0.com',
     algorithms: ['RS256'],
 })
 
@@ -57,7 +57,7 @@ app.get('/api/jokes/food', (req, res) => {
 })
 
 
-app.get('/api/jokes/celebrity', (req, res) => {
+app.get('/api/jokes/celebrity', authCheck ,(req, res) => {
     let CelebrityJokes = [
         {
           id: 88881,

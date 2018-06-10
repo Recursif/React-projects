@@ -1,0 +1,37 @@
+
+# Adding Authentification to Your ReactJS App 
+
+The majority of the apps we use on a daily basis 
+have a means of authentification usrs.
+
+I'll show you how to easily add authentification to our 
+ReactJs application.
+
+We'll use Auth0 as our authentification service.
+
+Auth0 allows us to issue JSON Web Tokens (JWTs).
+
+If you don't already have an AUth0 account, sign up
+for a free one now.
+
+
+Auth0 offers a generous free tier to get started with modern application.
+
+Login to your Auth0 management dashboard and 
+let's create a new API client. 
+
+From here, click on the APIs menu item and then the Create API button. You will need to give your API a name and an identifier. 
+
+
+## Secure The node API 
+
+
+We need to secure the API so that the celebrity endpoint will only be accessible to authenticated users. 
+
+We can secure it easily with Auth0.
+
+Open up your server.js file replace the YOUR-API-AUDIENCE-ATTRIBUTE, and YOUR-AUTH0-DOMAIN variable
+variables with the audience attribute of the API, and your auth0 domain respectively.
+
+Then add the authCheck middleware to the celebrity endpoint like so:
+
