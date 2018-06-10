@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
+import { isLoggedIn } from '../utils/AuthService.js'
 import { getFoodData } from '../utils/chuck-api'
 
 class FoodJokes extends Component {
@@ -44,9 +45,15 @@ class FoodJokes extends Component {
                 ))}
 
                 <div className="col-sm-12">
-                    <div className="jumbotron text-center">
-                        <h2>Get Access to Celebrity Jokes By Logging In</h2>
-                    </div>
+                    { isLoggedIn() ? 
+                        <div className="jumbotron text-center">
+                            <h2>View Celebrity Jokes</h2>
+                            <Link className="btn btn-lg btn-success" to='/special'> Celebrity Jokes </Link>
+                        /<div> :   
+                        <div className="jumbotron text-center">
+                            <h2>Get Access to Celebrity Jokes By Logging In</h2>
+                        </div>
+                    }
                 </div>
 
                 <div className="col-sm-12">
