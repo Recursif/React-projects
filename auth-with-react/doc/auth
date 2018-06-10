@@ -55,4 +55,25 @@ found in Clients section oy your management dashboard.
 
 Check the Test panel of your API from the dashboard. 
 
-You'll see the test client like 
+
+We also checked whether the token has expired via the getTokenExpirationDate and isTokenExpired methods.
+
+The isLoggedIn method returns true or false based on the presence and validity of a user id_token.
+
+Finally, we implemented a middleware, the requireAuth method.
+
+We'll use this method to protect the /special route being accessed for non-loggedIn users.
+
+Let's go update the Nav component to hide/show the login and logout buttons based on the user's authentication status.
+
+
+Note: We used an arrow function to wrap and execute the onClick handlers like so:
+{() => login()}. Check out how to handle events in react with arrow function to understand why we used arrow functions.
+
+
+We imported login, logout and isLogged functions from the AuthService.
+
+Then, we attached the login() and logout() functions to the login and logout buttons respectively.
+
+We also hid the /special link by checking the authentication status of the user via the isLoggedIn() function.
+
