@@ -5,11 +5,11 @@ import auth0 from 'auth0-js'
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 
-const CLIENT_ID = '{AUTH0_CLIENT_ID}';
-const CLIENT_DOMAIN = 'AUTH0_DOMAIN';
-const REDIRECT = 'YOUR_CALLBACK_URL';
+const CLIENT_ID = 'M5AUgzSXt1NScf5h4Bz40OeTy7VLbl6p';
+const CLIENT_DOMAIN = 'recursif.eu.auth0.com';
+const REDIRECT = 'http://localhost:3000/callback';
 const SCOPE = 'YOUR_SCOPE';
-const AUDIENCE = 'AUDIENCE_ATTRIBUTE';
+const AUDIENCE = 'https://recursif.eu.auth0.com/userinfo';
 
 
 var auth = new auth0.WebAuth({
@@ -45,11 +45,11 @@ export function getAccessToken() {
     return localStorage.getItem(ACCESS_TOKEN_KEY)
 }
 
-export clearIdToken() {
+export function clearIdToken() {
     localStorage.removeItem(ID_TOKEN_KEY)
 }
 
-function clearAccessToken() {
+export function clearAccessToken() {
     localStorage.removeItem(ACCES_TOKEN_KEY)
 }
 

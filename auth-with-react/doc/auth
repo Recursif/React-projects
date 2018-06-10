@@ -77,3 +77,71 @@ Then, we attached the login() and logout() functions to the login and logout but
 
 We also hid the /special link by checking the authentication status of the user via the isLoggedIn() function.
 
+
+We are enabling the link to celebrity jokes based on the login status of a user via the isLoggedIn() method.
+
+
+## Add a Callback Component 
+
+We will create a new component and call it Callback.js.
+
+This component will be activated when the localhost:3000/callback route is called and it will 
+process the redirect from Auth0 and ensure we received the right data back after 
+a succeful authentification.
+
+The component will store the access_token and id_token.
+
+
+Once the user is authenticated, Auth0 will redirect back to our application and call the /callback
+route.
+
+Auth0 will also append the id_token as well as the access_token to this request, 
+and our Callback component will make sure to properly process and store those tokens in 
+localStorage.
+
+If all is well, meaning we received an id_token, and access_token, we will 
+be redirected back to the / page and will be in a logged-in-state.
+
+
+## Add some values to Auth0 Dashboard 
+
+Just before you try to log in or sign up,
+head over to your Auth0 dashboard and add 
+http://localhost:3000/callback to the Allowed Callback URLs and http://localhost:3000 to Allowed Origins (CORS).
+
+
+## Secure The Special Route 
+
+We need to ensure that no one can go to the browser and just type /special to access the celebrity route.
+
+
+
+
+We secured our endpoint earlier, but right now we are not passing the access_token to the backend yet.
+
+We need to send the access token along with our request as a header to enable the secured endpoint's recognition of the logged-in user.
+
+
+### Updating the ChuckNorris API helper 
+
+Go ahead and open up the utils/chuck-api.js file.
+
+We will tweak the getCelebrityData function a bit. Currently, it initiates a GET request only to fetch data from the API.
+
+Now, we will pass an option to send an authoriaztion header with a Bearer 
+access token along with the GET request like so:
+
+
+import { getAccessToken } from './AuthService'
+
+funtion getCelebrityData() {
+    const url = `${BASE_URL}/api/jokes/celebrity`
+    return axios.get(url, headers; { Authorization: `Bearer ${getAccessToken()}`}}).then(res => res.data)
+}
+
+
+## Conclusion 
+
+In addition, Auth0 can help secure your ReactJS apps with more than just username-password authentication.
+It provides features like multifactor auth, anomaly detection, enterprise federation, single sign on (SSO), and more. 
+
